@@ -2,19 +2,35 @@
 
 High-performance TCP chat server in C with C++ wrappers. Cross-platform, production-ready.
 
+## Interactive Chat Demo
+
+![Interactive Chat](screenshots/server.png)
+*Real-time chat between alice and bob - type messages and see them instantly*
+
 ## Quick Start
 
 ```bash
 make              # Build
-./demo.sh         # Run automated demo with 3 clients
+./demo.sh         # Run automated demo
 ```
 
-**Manual:**
+**Interactive Chat:**
 ```bash
-./server 8080 10                                    # Terminal 1
-./client 127.0.0.1 8080 alice 20 alice.log          # Terminal 2
-./client 127.0.0.1 8080 bob 20 bob.log              # Terminal 3
-tail -f alice.log                                   # Watch messages
+./server 8080 10                    # Terminal 1: Start server
+./chat 127.0.0.1 alice              # Terminal 2: Join as alice
+./chat 127.0.0.1 bob                # Terminal 3: Join as bob
+```
+
+Type messages and see them appear instantly. Type `quit` to exit.
+
+## Automated Demo
+
+![Demo Script Output](screenshots/demo.png)
+*Automated demo with 3 clients (alice, bob, charlie) exchanging messages*
+
+Run the demo script to see the server in action:
+```bash
+./demo.sh
 ```
 
 ## Features
@@ -22,6 +38,7 @@ tail -f alice.log                                   # Watch messages
 - **Cross-platform I/O** - Uses `poll()` (Linux, macOS, BSD)
 - **Non-blocking sockets** - Scales to 1000+ clients
 - **Multi-threaded client** - Separate sender/receiver threads
+- **Interactive mode** - Real-time keyboard input
 - **Custom protocol** - Efficient binary format
 - **C++ interface** - Modern RAII wrappers included
 - **Production-ready** - Valgrind tested, proper error handling
@@ -41,6 +58,31 @@ make test         # Run unit tests
 make clean        # Clean artifacts
 ```
 
+## Usage
+
+**Automated Demo:**
+```bash
+./demo.sh
+```
+
+**Interactive Chat:**
+```bash
+# Terminal 1 - Start server
+./server 8080 10
+
+# Terminal 2 - Join chat
+./chat 127.0.0.1 yourname
+
+# Terminal 3 - Another user
+./chat 127.0.0.1 friend
+```
+
+**Batch Testing (auto-generated messages):**
+```bash
+./client 127.0.0.1 8080 alice 50 alice.log
+tail -f alice.log
+```
+
 ## Debugging
 
 ```bash
@@ -50,7 +92,7 @@ cgdb ./server
 (gdb) run 8080 10
 ```
 
-**Valgrind:**
+**Memory leak check:**
 ```bash
 valgrind --leak-check=full ./server 8080 10
 ```
@@ -82,10 +124,11 @@ server.run();
 
 ```
 tcp-groupchat/
-├── src/           # C implementation
-├── include/       # Headers (C + C++)
-├── tests/         # Unit tests
-└── Makefile       # Build system
+├── src/              # C implementation
+├── include/          # Headers (C + C++)
+├── tests/            # Unit tests
+├── screenshots/      # Demo screenshots
+└── Makefile          # Build system
 ```
 
 ## Technical Details
