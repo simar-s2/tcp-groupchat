@@ -1,0 +1,27 @@
+# Ignore build artifacts
+*.o
+*.a
+*.so
+*.dylib
+build/
+server
+client
+test_runner
+
+# Ignore logs
+*.log
+*.pid
+
+# Ignore valgrind output
+valgrind-*.log
+
+# Ignore editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignore OS files
+.DS_Store
+Thumbs.db

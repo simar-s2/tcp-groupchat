@@ -1,0 +1,67 @@
+# .clang-format configuration for TCP Group Chat
+# Based on Linux kernel style with some modifications
+
+---
+Language: Cpp
+BasedOnStyle: LLVM
+
+# Indentation
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ContinuationIndentWidth: 4
+
+# Alignment
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignEscapedNewlines: Left
+AlignOperands: true
+AlignTrailingComments: true
+
+# Allow
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+
+# Break
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: Linux
+BreakBeforeTernaryOperators: true
+BreakStringLiterals: true
+
+# Column limit
+ColumnLimit: 100
+
+# Comments
+ReflowComments: true
+
+# Includes
+IncludeBlocks: Regroup
+SortIncludes: true
+
+# Indentation
+IndentCaseLabels: false
+IndentPPDirectives: None
+
+# Pointers
+PointerAlignment: Right
+
+# Spaces
+SpaceAfterCStyleCast: false
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: false
+SpacesInCStyleCastParentheses: false
+SpacesInContainerLiterals: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+
+# Other
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 1
