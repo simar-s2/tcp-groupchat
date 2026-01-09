@@ -5,8 +5,8 @@ High-performance TCP chat server in C with C++ wrappers. Cross-platform, product
 ## Interactive Chat Demo
 
 ![Interactive Chat](screenshots/server.png)
-[Interactive Chat](screenshots/alice.png)
-[Interactive Chat](screenshots/bob.png)
+![Interactive Chat](screenshots/alice.png)
+![Interactive Chat](screenshots/bob.png)
 *Real-time chat between alice and bob - type messages and see them instantly*
 
 ## Quick Start
