@@ -6,6 +6,7 @@
 build/
 server
 client
+chat
 test_runner
 
 # Ignore logs

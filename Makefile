@@ -22,15 +22,18 @@ INCLUDE_DIR = include
 COMMON_SRC = $(SRC_DIR)/common.c
 SERVER_SRC = $(SRC_DIR)/server.c
 CLIENT_SRC = $(SRC_DIR)/client.c
+INTERACTIVE_CLIENT_SRC = $(SRC_DIR)/interactive_client.c
 
 # Object files
 COMMON_OBJ = $(BUILD_DIR)/common.o
 SERVER_OBJ = $(BUILD_DIR)/server.o
 CLIENT_OBJ = $(BUILD_DIR)/client.o
+INTERACTIVE_CLIENT_OBJ = $(BUILD_DIR)/interactive_client.o
 
 # Executables
 SERVER = server
 CLIENT = client
+INTERACTIVE_CLIENT = chat
 TEST_RUNNER = test_runner
 
 # Default target
@@ -40,12 +43,12 @@ all: release
 # Release build
 .PHONY: release
 release: CFLAGS += $(RELEASE_FLAGS)
-release: $(SERVER) $(CLIENT)
+release: $(SERVER) $(CLIENT) $(INTERACTIVE_CLIENT)
 
 # Debug build (for use with CGDB)
 .PHONY: debug
 debug: CFLAGS += $(DEBUG_FLAGS)
-debug: clean $(SERVER) $(CLIENT)
+debug: clean $(SERVER) $(CLIENT) $(INTERACTIVE_CLIENT)
 	@echo "Debug build complete. Use 'make gdb-server' or 'make gdb-client' to debug"
 
 # Create build directory
@@ -68,6 +71,13 @@ $(CLIENT_OBJ): $(CLIENT_SRC) $(INCLUDE_DIR)/protocol.h $(INCLUDE_DIR)/common.h |
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(CLIENT): $(CLIENT_OBJ) $(COMMON_OBJ)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+# Build interactive client
+$(INTERACTIVE_CLIENT_OBJ): $(INTERACTIVE_CLIENT_SRC) $(INCLUDE_DIR)/protocol.h $(INCLUDE_DIR)/common.h | $(BUILD_DIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(INTERACTIVE_CLIENT): $(INTERACTIVE_CLIENT_OBJ) $(COMMON_OBJ)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 # Testing
@@ -128,7 +138,7 @@ run-client: release
 .PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR)
-	rm -f $(SERVER) $(CLIENT) $(TEST_RUNNER)
+	rm -f $(SERVER) $(CLIENT) $(INTERACTIVE_CLIENT) $(TEST_RUNNER)
 	rm -f *.log *.pid
 	rm -f client_*.log server.log
 	rm -f valgrind-*.log
