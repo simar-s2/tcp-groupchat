@@ -7,6 +7,7 @@ High-performance TCP chat server in C with C++ wrappers. Cross-platform, product
 ![Interactive Chat](screenshots/server.png)
 ![Interactive Chat](screenshots/alice.png)
 ![Interactive Chat](screenshots/bob.png)
+
 *Real-time chat between alice and bob - type messages and see them instantly*
 
 ## Quick Start
@@ -28,6 +29,8 @@ Type messages and see them appear instantly. Type `quit` to exit.
 ## Automated Demo
 
 ![Demo Script Output](screenshots/demo.png)
+
+
 *Automated demo with 3 clients (alice, bob, charlie) exchanging messages*
 
 Run the demo script to see the server in action:
